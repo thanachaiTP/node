@@ -1,0 +1,35 @@
+version: "3"
+services:
+  init_1:
+    image: domecloud/jfin-node
+    command:
+      #- "geth"
+      - "init"
+      - "/tmp/genesis.json"
+    volumes:
+      - "./data:/root"
+
+  node_1:
+    depends_on:
+      - init_1
+    image: domecloud/jfin-node
+    command:
+      - "--networkid=3501"
+      - "--http"
+      - "--http.addr=0.0.0.0"
+      - "--http.api=eth,net,web3,debug,trace,txpool"
+      - "--http.port=8545"
+      - "--http.corsdomain=*"
+      - "--http.vhosts=*"
+      - "--ws"
+      - "--ws.addr=0.0.0.0"
+      - "--ws.api=eth,net,web3,debug,trace,txpool"
+      - "--ws.port=8546"
+      - "--ws.origins=*"
+    ports:
+      - "8545:8545"
+      - "8546:8546"
+    volumes:
+      - "./data:/root"
+    restart: always
+
