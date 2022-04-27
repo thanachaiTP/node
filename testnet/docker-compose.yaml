@@ -1,0 +1,98 @@
+version: "3"
+services:
+  node_1:
+    image: domecloud/jfin-validator-node
+    network_mode: "host"
+    command:
+      - "--datadir=/datadir"
+      - "--genesis=/datadir/genesis.json"
+      - "--bootnodes=enode://5c8e90050fabb7e14e4921dc107caf533140112245e7a231d0edc49861cd779760ad4804e7034952a5cc79422fa9d31c54e9a6141fb4995af7a6bfce7a39140f@95.217.122.150:30303"
+      - "--syncmode=fast"
+      - "--networkid=14001"
+      - "--ethstats=ynode1:unsecure@stats.jfinchain.com"
+      - "--port=30001"
+    volumes:
+      - "./genesis.json:/datadir/genesis.json"
+      - "./datadir/node_1:/datadir/geth"
+    restart: always
+
+  node_2:
+    image: domecloud/jfin-validator-node
+    network_mode: "host"
+    command:
+      - "--datadir=/datadir"
+      - "--genesis=/datadir/genesis.json"
+      - "--bootnodes=enode://5c8e90050fabb7e14e4921dc107caf533140112245e7a231d0edc49861cd779760ad4804e7034952a5cc79422fa9d31c54e9a6141fb4995af7a6bfce7a39140f@95.217.122.150:30303"
+      - "--syncmode=fast"
+      - "--networkid=14001"
+      - "--ethstats=ynode2:unsecure@stats.jfinchain.com"
+      - "--port=30002"
+    volumes:
+      - "./genesis.json:/datadir/genesis.json"
+      - "./datadir/node_2:/datadir/geth"
+    restart: always
+
+  node_3:
+    image: domecloud/jfin-validator-node
+    network_mode: "host"
+    command:
+      - "--datadir=/datadir"
+      - "--genesis=/datadir/genesis.json"
+      - "--bootnodes=enode://5c8e90050fabb7e14e4921dc107caf533140112245e7a231d0edc49861cd779760ad4804e7034952a5cc79422fa9d31c54e9a6141fb4995af7a6bfce7a39140f@95.217.122.150:30303"
+      - "--syncmode=fast"
+      - "--networkid=14001"
+      - "--ethstats=ynode1:unsecure@stats.jfinchain.com"
+      - "--port=30003"
+    volumes:
+      - "./genesis.json:/datadir/genesis.json"
+      - "./datadir/node_3:/datadir/geth"
+    restart: always
+
+  node_4:
+    image: domecloud/jfin-validator-node
+    network_mode: "host"
+    command:
+      - "--datadir=/datadir"
+      - "--genesis=/datadir/genesis.json"
+      - "--bootnodes=enode://5c8e90050fabb7e14e4921dc107caf533140112245e7a231d0edc49861cd779760ad4804e7034952a5cc79422fa9d31c54e9a6141fb4995af7a6bfce7a39140f@95.217.122.150:30303"
+      - "--syncmode=fast"
+      - "--networkid=14001"
+      - "--ethstats=ynode1:unsecure@stats.jfinchain.com"
+      - "--port=30004"
+    volumes:
+      - "./genesis.json:/datadir/genesis.json"
+      - "./datadir/node_4:/datadir/geth"
+    restart: always
+
+  node_5:
+    image: domecloud/jfin-validator-node
+    network_mode: "host"
+    command:
+      - "--datadir=/datadir"
+      - "--genesis=/datadir/genesis.json"
+      - "--bootnodes=enode://5c8e90050fabb7e14e4921dc107caf533140112245e7a231d0edc49861cd779760ad4804e7034952a5cc79422fa9d31c54e9a6141fb4995af7a6bfce7a39140f@95.217.122.150:30303"
+      - "--syncmode=fast"
+      - "--networkid=14001"
+      - "--ethstats=ynode5:unsecure@stats.jfinchain.com"
+      - "--port=30005"
+    volumes:
+      - "./genesis.json:/datadir/genesis.json"
+      - "./datadir/node_5:/datadir/geth"
+    restart: always
+
+  node_6:
+    image: domecloud/jfin-validator-node
+    network_mode: "host"
+    command:
+      - "--datadir=/datadir"
+      - "--genesis=/datadir/genesis.json"
+      - "--bootnodes=enode://5c8e90050fabb7e14e4921dc107caf533140112245e7a231d0edc49861cd779760ad4804e7034952a5cc79422fa9d31c54e9a6141fb4995af7a6bfce7a39140f@95.217.122.150:30303"
+      - "--syncmode=fast"
+      - "--networkid=14001"
+      - "--ethstats=ynode6:unsecure@stats.jfinchain.com"
+      - "--port=30006"
+    volumes:
+      - "./genesis.json:/datadir/genesis.json"
+      - "./datadir/node_6:/datadir/geth"
+    restart: always
+
