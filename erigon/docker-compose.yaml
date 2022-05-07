@@ -1,6 +1,7 @@
 version: "3"
 services:
   erigon:
+    container_name: jfinchain-erigon
     image: domecloud/jfin-erigon
     user: root
     # network_mode: "host"
@@ -25,8 +26,10 @@ services:
       - "./datadir:/home/erigon"
       - "./init-script.sh:/root/init-script.sh"
     restart: always
+    
 
   rpcdaemon: # Service to server JSON-RCP API
+    container_name: jfinchain-rpc
     image: domecloud/jfin-erigon
     user: root
     command: rpcdaemon ${RPCDAEMON_FLAGS-} --datadir=/home/erigon/.local/share/erigon  --private.api.addr=erigon:9090 --txpool.api.addr=erigon:9090 --http.addr=0.0.0.0 --http.vhosts=* --http.corsdomain=* --http.api=eth,debug,net --ws
@@ -40,6 +43,7 @@ services:
     restart: unless-stopped
 
   downloader: # Service to download/seed historical data (need only if you use --syncmode=snap)
+    container_name: jfinchain-downloader
     image: domecloud/jfin-erigon
     user: root
     command: downloader ${DOWNLOADER_FLAGS-} --datadir=/home/erigon/.local/share/erigon --downloader.api.addr=0.0.0.0:9093
@@ -54,8 +58,11 @@ services:
     restart: unless-stopped
 
   prometheus:
+    container_name: prometheus
     image: prom/prometheus:v2.35.0
     user: root
+    environment:
+      - TZ=Asia/Bangkok
     command: --log.level=warn --config.file=/etc/prometheus/prometheus.yml --storage.tsdb.path=/prometheus --storage.tsdb.retention.time=150d --web.console.libraries=/usr/share/prometheus/console_libraries --web.console.templates=/usr/share/prometheus/consoles
     ports:
       - "9090:9090"
@@ -65,8 +72,11 @@ services:
     restart: unless-stopped
 
   grafana:
+    container_name: grafana
     image: grafana/grafana:8.5.2
     user: root
+    environment:
+      - TZ=Asia/Bangkok
     ports:
       - "3000:3000"
     volumes:
